@@ -1,38 +1,98 @@
 .App {
   text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 10px;
+  padding: 20px;
+  color: black;
+
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: 15px auto;
+  padding-bottom: 20px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.meal-recipe {
+  opacity: 75%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ffffff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 90%;
+}
+
+.recipe-container {
+  opacity: 75%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #000000;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 80%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-container input {
+  width: 80%;
+  margin-right: 15px;
+}
+
+.bottom-container {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 2px;
+  width: 100%;
+}
+
+.recipe-text {
+  width: 40%;
+  background-color: #dfdfdf;
+  max-width: 100%;
+  padding: 20px;
+  margin: 2px;
+  opacity: 75%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  color: #010101;
+}
+
+
+.option {
+  display: grid;
+  flex-direction: row-reverse;
+  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  background-color: #f2f2f2;
+  opacity: 80%;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+  cursor: pointer;
+  width: 160px;
+  height: 150px;
+  margin: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+
+.icon {
+  font-size: 2rem;
+  margin-bottom: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.text {
+  color: #000000;
+  font-size: 1rem;
+  text-align: center;
 }

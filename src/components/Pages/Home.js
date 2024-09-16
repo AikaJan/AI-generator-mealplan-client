@@ -1,25 +1,16 @@
+import "./home.css";
 import "./App.css";
-// import React, { useState } from "react";
+import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
-import PageOne from "./components/Pages/PageOne";
-// import PageTwo from "./components/Pages/PageTwo";
-import PageThree from "./components/Pages/PageThree";
-
-function App() {
+const Home = () => {
   const navigate = useNavigate();
+
   const handleOptionClick = (path) => {
     navigate(path);
   };
 
   return (
     <div className="App">
-      <Routes>
-        git commit -m "first commit"
-        <Route path="/" element={<home />} />
-        <Route path="/page1" element={<PageOne />} />
-        {/* <Route path="/page2" element={<PageTwo />} /> */}
-        <Route path="/page3" element={<PageThree />} />
-      </Routes>
       <div className="container">
         <div className="option" onClick={() => handleOptionClick("/page1")}>
           <div className="icon">🍽️</div>
@@ -34,12 +25,14 @@ function App() {
         <div className="option" onClick={() => handleOptionClick("/page3")}>
           <div className="icon">🥗</div>
           <div className="text">
-            Form for creating a 7-day gluten and sugar free meal plan
+            Form for creating a 10-day gluten and sugar free meal plan
+          </div>
+          <div className="home" onClick={() => handleOptionClick("/")}>
+            <div className="text">Go Home</div>
           </div>
         </div>
       </div>
     </div>
   );
-}
-
-export default App;
+};
+export default Home;
