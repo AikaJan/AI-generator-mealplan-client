@@ -1,44 +1,3 @@
-// import React from "react";
-// import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-// import { auth } from "./firebase";
-
-// function Login() {
-//   const signInWithGoogle = async () => {
-//     const provider = new GoogleAuthProvider();
-//     try {
-//       await signInWithPopup(auth, provider);
-//     } catch (error) {
-//       console.error("Error signing in with Google:", error);
-//     }
-//   };
-
-//   return (
-//     <div className="login-container">
-//       <button onClick={signInWithGoogle}>Sign in with Google</button>
-//     </div>
-//   );
-// }
-
-// export default Login;
-
-// import { initializeApp } from "firebase/app";
-// import { getAuth } from "firebase/auth";
-// import { getAnalytics } from "firebase/analytics";
-
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDE9d475NdybSHeSbWxwLHMJmXVDGC7lSk",
-//   authDomain: "ai-recipe-generator-5b9d2.firebaseapp.com",
-//   projectId: "ai-recipe-generator-5b9d2",
-//   storageBucket: "ai-recipe-generator-5b9d2.appspot.com",
-//   messagingSenderId: "150782837396",
-//   appId: "1:150782837396:web:520fa971024105b8a8aa81",
-//   measurementId: "G-2D560VJ0NT",
-// };
-
-// const app = initializeApp(firebaseConfig);
-// const analytics = getAnalytics(app);
-// export const auth = getAuth(app);
-
 import { initializeApp } from "firebase/app";
 import {
   getAuth,
@@ -48,13 +7,13 @@ import {
 import { getAnalytics } from "firebase/analytics";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDE9d475NdybSHeSbWxwLHMJmXVDGC7lSk",
-  authDomain: "ai-recipe-generator-5b9d2.firebaseapp.com",
-  projectId: "ai-recipe-generator-5b9d2",
-  storageBucket: "ai-recipe-generator-5b9d2.appspot.com",
-  messagingSenderId: "150782837396",
-  appId: "1:150782837396:web:520fa971024105b8a8aa81",
-  measurementId: "G-2D560VJ0NT",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);

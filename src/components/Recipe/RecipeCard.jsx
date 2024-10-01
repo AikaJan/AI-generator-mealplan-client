@@ -4,6 +4,7 @@ import "./recipeCard.css";
 const RecipeCard = ({ onSubmit }) => {
   const [ingredients, setIngredients] = useState("");
   const [mealType, setMealType] = useState("");
+  const [mealPlan, setMealPlan] = useState("");
 
   const handleChange = (e) => {
     const { id, value } = e.target;
@@ -14,6 +15,9 @@ const RecipeCard = ({ onSubmit }) => {
       case "mealType":
         setMealType(value);
         break;
+      case "mealPlan":
+        setMealPlan(value);
+        break;
       default:
         break;
     }
@@ -23,6 +27,7 @@ const RecipeCard = ({ onSubmit }) => {
     const recipeData = {
       ingredients,
       mealType,
+      mealPlan,
     };
     onSubmit(recipeData);
   };
@@ -50,6 +55,16 @@ const RecipeCard = ({ onSubmit }) => {
           placeholder="breakfast / lunch etc."
         />
       </div>
+      {/* <div className="px-6">
+        <label htmlFor="mealPlan">Meal Plan</label>
+        <input
+          type="text"
+          id="mealPlan"
+          value={mealPlan}
+          onChange={handleChange}
+          placeholder="vegetarian / keto etc."
+        />
+      </div> */}
       <div className="btn">
         <button type="button" onClick={handleSubmit}>
           Generate Recipe

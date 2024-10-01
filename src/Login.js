@@ -62,7 +62,7 @@ const Login = () => {
         <h1>{isSignUp ? "Sign Up" : "Sign In"}</h1>
         {error && <p className="error-message">{error}</p>}
 
-        {isSignUp && (
+        {!isSignUp && (
           <input
             type="text"
             placeholder="Your Name"

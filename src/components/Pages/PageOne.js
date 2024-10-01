@@ -3,65 +3,50 @@ import RecipeCard from "./../Recipe/RecipeCard.jsx";
 
 function PageOne() {
   const [recipeData, setRecipeData] = useState("");
-  const [recipeText1, setRecipeText1] = useState("");
-  const [recipeText2, setRecipeText2] = useState("");
-  const [recipeText3, setRecipeText3] = useState("");
+  const [recipeTexts, setRecipeTexts] = useState(["", "", ""]);
 
-  const closeEventStream = (eventSourceRef) => {
-    if (eventSourceRef.current) {
-      eventSourceRef.current.close();
-      eventSourceRef.current = null;
+  const closeEventStream = (eventSource) => {
+    if (eventSource) {
+      eventSource.close();
     }
   };
 
-  const initializeEventStream = useCallback(async () => {
+  const initializeSingleEventStream = (index, queryParams) => {
+    const eventSource = new EventSource(
+      `${process.env.REACT_APP_API_BASE_URL}/recipeStream?${queryParams}`
+    );
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      if (data.action === "close") {
+        closeEventStream(eventSource);
+      } else if (data.action === "chunk") {
+        setRecipeTexts((prevTexts) => {
+          const newTexts = [...prevTexts];
+          newTexts[index] += data.chunk;
+          return newTexts;
+        });
+      }
+    };
+  };
+
+  const initializeEventStreams = useCallback(async () => {
     const recipeInputs = { ...recipeData };
     const queryParams = new URLSearchParams(recipeInputs).toString();
 
-    const url1 = `http://localhost:3001/recipeStream?${queryParams}`;
-    const eventSource1 = new EventSource(url1);
-    eventSource1.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.action === "close") {
-        closeEventStream(eventSource1);
-      } else if (data.action === "chunk") {
-        setRecipeText1((prev) => prev + data.chunk);
-      }
-    };
-
-    const url2 = `http://localhost:3001/recipeStream?${queryParams}`;
-    const eventSource2 = new EventSource(url2);
-    eventSource2.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.action === "close") {
-        closeEventStream(eventSource2);
-      } else if (data.action === "chunk") {
-        setRecipeText2((prev) => prev + data.chunk);
-      }
-    };
-
-    const url3 = `http://localhost:3001/recipeStream?${queryParams}`;
-    const eventSource3 = new EventSource(url3);
-    eventSource3.onmessage = (event) => {
-      const data = JSON.parse(event.data);
-      if (data.action === "close") {
-        closeEventStream(eventSource3);
-      } else if (data.action === "chunk") {
-        setRecipeText3((prev) => prev + data.chunk);
-      }
-    };
+    // loop to handle 3 event streams
+    for (let i = 0; i < 3; i++) {
+      initializeSingleEventStream(i, queryParams);
+    }
   }, [recipeData]);
 
   useEffect(() => {
     if (recipeData) {
-      initializeEventStream();
+      initializeEventStreams();
     }
-  }, [recipeData, initializeEventStream]);
+  }, [recipeData, initializeEventStreams]);
 
   async function onSubmit(data) {
-    setRecipeText1("");
-    setRecipeText2("");
-    setRecipeText3("");
+    setRecipeTexts(["", "", ""]);
     setRecipeData(data);
   }
 
@@ -72,18 +57,16 @@ function PageOne() {
       </div>
       <div className="bottom-container">
         <div className="recipe-text">
-          {" "}
           <h2>Option 1</h2>
-          {recipeText1}
+          {recipeTexts[0]}
         </div>
         <div className="recipe-text">
           <h2>Option 2</h2>
-          {recipeText2}
+          {recipeTexts[1]}
         </div>
         <div className="recipe-text">
-          {" "}
           <h2>Option 3</h2>
-          {recipeText3}
+          {recipeTexts[2]}
         </div>
       </div>
     </div>

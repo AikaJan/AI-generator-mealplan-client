@@ -4,7 +4,13 @@
   margin: 10px;
   padding: 20px;
   color: black;
+  /* background-image: url('./food-wallpaper.jpg'); */
 
+}
+
+.footer-footer {
+  margin-top: 50px;
+  padding-top: 20px;
 }
 
 .container {

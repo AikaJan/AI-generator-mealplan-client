@@ -1,9 +1,8 @@
 import "./App.css";
-// import React, { useState } from "react";
 import { Routes, Route, useNavigate } from "react-router-dom";
 import PageOne from "./components/Pages/PageOne";
-// import PageTwo from "./components/Pages/PageTwo";
 import PageThree from "./components/Pages/PageThree";
+import Footer from "./components/Pages/Footer";
 
 function App() {
   const navigate = useNavigate();
@@ -14,10 +13,8 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        git commit -m "first commit"
         <Route path="/" element={<home />} />
         <Route path="/page1" element={<PageOne />} />
-        {/* <Route path="/page2" element={<PageTwo />} /> */}
         <Route path="/page3" element={<PageThree />} />
       </Routes>
       <div className="container">
@@ -27,16 +24,15 @@ function App() {
             Choose products and create your own recipe.
           </div>
         </div>
-        <div className="option" onClick={() => handleOptionClick("/page2")}>
-          <div className="icon">📅</div>
-          <div className="text">Form for creating a diet calendar.</div>
-        </div>
         <div className="option" onClick={() => handleOptionClick("/page3")}>
           <div className="icon">🥗</div>
           <div className="text">
             Form for creating a 7-day gluten and sugar free meal plan
           </div>
         </div>
+      </div>
+      <div className="footer-footer">
+        <Footer />
       </div>
     </div>
   );
