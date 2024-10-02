@@ -173,7 +173,8 @@ const PageThree = () => {
       setIsSaving(true);
       // const res = await axios.post("http://localhost:3001/savePlan", {
       const res = await axios.post(
-        "https://ai-generator-mealplan-server.vercel.app/savePlan",
+        // "https://ai-generator-mealplan-server.vercel.app/savePlan",
+        `${process.env.REACT_APP_API_BASE_URL}/savePlan`,
         {
           mealPlan: response,
         }
@@ -195,7 +196,8 @@ const PageThree = () => {
     try {
       // const res = await axios.get("http://localhost:3001/getPlan");
       const res = await axios.get(
-        "https://ai-generator-mealplan-server.vercel.app/getPlan"
+        // "https://ai-generator-mealplan-server.vercel.app/getPlan"
+        `${process.env.REACT_APP_API_BASE_URL}/getPlan`,
       );
 
       if (res.status === 200) {
