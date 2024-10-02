@@ -12,9 +12,12 @@ function PageOne() {
   };
 
   const initializeSingleEventStream = (index, queryParams) => {
+    // const eventSource = new EventSource(
+    //   `${process.env.REACT_APP_API_BASE_URL}/recipeStream?${queryParams}`
+    // );
     const eventSource = new EventSource(
-      `${process.env.REACT_APP_API_BASE_URL}/recipeStream?${queryParams}`
-    );
+  `https://ai-generator-mealplan-server.vercel.app/recipeStream?mealPlan=${mealPlan}`
+);
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
       if (data.action === "close") {
