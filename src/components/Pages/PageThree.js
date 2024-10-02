@@ -11,9 +11,12 @@ const PageThree = () => {
     const mealPlan =
       "Create me a 7-day gluten and sugar-free meal plan, no cooking description. Break each day down separately starting with Day 1:. Split them into several parts, like. Breakfast:, Snack:, Lunch:, Snack:, Dinner:. Start each step with a new paragraph";
 
+    // const eventSource = new EventSource(
+    //   `http://localhost:3001/recipeStream?mealPlan=${mealPlan}`
+    // );
     const eventSource = new EventSource(
-      `http://localhost:3001/recipeStream?mealPlan=${mealPlan}`
-    );
+  `https://ai-generator-mealplan-server.vercel.app/recipeStream?mealPlan=${mealPlan}`
+);
 
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
