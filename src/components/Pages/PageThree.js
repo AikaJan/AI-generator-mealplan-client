@@ -148,7 +148,8 @@ const PageThree = () => {
     //   `http://localhost:3001/recipeStream?mealPlan=${mealPlan}`
     // );
     const eventSource = new EventSource(
-      `https://ai-generator-mealplan-server.vercel.app/recipeStream?mealPlan=${mealPlan}`
+      // `https://ai-generator-mealplan-server.vercel.app/recipeStream?mealPlan=${mealPlan}`
+      `${process.env.REACT_APP_API_BASE_URL}/recipeStream?mealPlan=${mealPlan}`
     );
     eventSource.onmessage = (event) => {
       const data = JSON.parse(event.data);
