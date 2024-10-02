@@ -146,7 +146,6 @@ const PageThree = () => {
     const mealPlan =
       "Create me a 7-day gluten and sugar-free meal plan, no cooking description. Break each day down separately starting with Day 1:. Split them into several parts, like. Breakfast:, Snack:, Lunch:, Snack:, Dinner:. Start each step with a new paragraph";
 
-    // Используем переменную окружения для гибкости
     const eventSource = new EventSource(
       `${process.env.REACT_APP_API_BASE_URL}/recipeStream?mealPlan=${mealPlan}`
     );
@@ -197,7 +196,6 @@ const PageThree = () => {
       );
       if (res.status === 200) {
         setSavedPlans(res.data);
-        // Прокрутка к сохранённым планам
         savedPlansRef.current.scrollIntoView({ behavior: "smooth" });
       } else {
         alert("Failed to retrieve saved meal plans.");
@@ -269,3 +267,4 @@ const PageThree = () => {
 };
 
 export default PageThree;
+
